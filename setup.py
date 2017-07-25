@@ -8,7 +8,6 @@ install_requirements = [
     'progressbar2>=2.6.0',
     'pytz>=2013.8',
     'python-dateutil>=2.2',
-    'ckanclient>=0.10',
 ]
 
 setup(

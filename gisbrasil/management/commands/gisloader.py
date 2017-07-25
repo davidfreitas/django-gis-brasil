@@ -13,16 +13,6 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         self.datasets = [
             brasil.MunicipiosBrasil(),
-            rs.portoalegre.Bairros(),
-            rs.portoalegre.AcidentesTransito(),
-            rs.portoalegre.EstacoesBikePoa(),
-            rs.portoalegre.PontosTaxi(),
-            rs.portoalegre.ParadasOnibus(),
-            rs.portoalegre.Eixos(),
-            rs.portoalegre.EstacoesRadioBase(),
-            rs.portoalegre.ConteineresLixo(),
-            rs.portoalegre.Lixeiras(),
-            rs.portoalegre.EspacosCulturais(),
         ]
         for dataset in self.datasets:
             dataset.register(self)
@@ -32,8 +22,8 @@ class Command(BaseCommand):
         print 'django-gisbrasil v.%s' % gisbrasil.__version__
         print 'Autores: %s' % gisbrasil.__author__
         print
- 
-        execution_flags = []        
+
+        execution_flags = []
         for dataset in self.datasets:
             execution_flags.append(dataset.check_trigger(options))
 
@@ -41,4 +31,3 @@ class Command(BaseCommand):
             for dataset in self.datasets:
                 dataset.run_import()
                 print
-

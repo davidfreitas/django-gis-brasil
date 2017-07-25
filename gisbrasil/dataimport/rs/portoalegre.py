@@ -90,7 +90,7 @@ class ParserErb(Parser):
         item.coordenada = self.latlng_to_wkt(row['LATITUDE'],
             row['LONGITUDE'])
         return item
-        
+
 
 class ParserAcidenteTransito(Parser):
     def parse(self, row):
@@ -167,7 +167,7 @@ class ParserConteinerLixo(Parser):
         item.av_status = row['AV_STATUS']
         item.av_score = row['AV_SCORE']
         item.av_side = row['AV_SIDE']
-        try:     
+        try:
             item.coordenada = self.latlng_to_wkt(row['LATITUDE'],
                 row['LONGITUDE'])
         except:
@@ -188,7 +188,7 @@ class ParserLixeiras(Parser):
         item.referencia = row['REFERENCIA']
         item.data_insta = row['DATA_INSTA']
         item.observacao = row['OBSERVACAOo']
-        try:     
+        try:
             item.coordenada = self.latlng_to_wkt(row['LATITUDE'],
                 row['LONGITUDE'])
         except:
@@ -213,7 +213,7 @@ class ParserEspacosCulturais(Parser):
         item.tipo = row['Tipo']
         item.categoria = row['Categoria']
         item.endereco_formatado = row['Endereço Formatado']
-        try:     
+        try:
             item.coordenada = self.latlng_to_wkt(row['Latitude'],
                 row['Longitude'])
         except:
@@ -245,9 +245,9 @@ class CkanDatasetImporter(object):
                 ' ', pbar.ETA(), ' Velocidade: ', pbar.FileTransferSpeed()]
             progress = pbar.ProgressBar(widgets=widgets, maxval=len(request_proxy))
             progress.start()
-            
+
             input_csv = csv.DictReader(request_proxy, delimiter=",")
-    
+
             with transaction.commit_on_success():
                 for row in input_csv:
                     item = self.parser.parse(row)
@@ -418,5 +418,3 @@ class Lixeiras(DataPoaDataset):
         title = u'Dados dos Lixeiras de Porto Alegre / RS'
         source = u'DataPoa'
         command = u'--lixeiras-portoalegre'
-
-
